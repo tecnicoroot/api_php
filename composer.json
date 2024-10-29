@@ -1,0 +1,15 @@
+{
+    "name": "tecnicoroot/api_php",
+    "autoload": {
+        "psr-4": {
+            "Tecnicoroot\\ApiPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "David Luis da Silva",
+            "email": "tecnicoroot@gmail.com"
+        }
+    ],
+    "require": {}
+}
