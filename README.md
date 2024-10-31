@@ -43,7 +43,7 @@ Criar o arquivo para que seja possível a utilização de url amigável
     >>routes
       >>>v1
 
-## 4. Ordem de criação dos arquivo
+## 4. Ordem de criação dos arquivo segundo o canal [NevesCode](https://www.youtube.com/watch?v=5fg5NG2ucsA)
 
 >Http
     >>Route.php
@@ -79,3 +79,16 @@ Criar o arquivo para que seja possível a utilização de url amigável
 
 >Http
     >>JWT.php
+
+## 4. iniciando o meu desenvolvimento
+
+### Vou criar uma função para auxiliar no debug do código
+1. Na pasta Utils vou criar a arquivo Utils com a função *VD* de vardump
+2. Criado o arquivo Route.php.
+3. Criado o arquivo routesv1.php.
+4. Criado o arquivo HomeController.php
+5. Criado o arquivo Core.php 
+6. Criado o arquivo Request.php
+7. Criado o arquivo Responnse.php
+8. Criado o arquivo RNotFoundController.php
+9. Criado o arquivo .http

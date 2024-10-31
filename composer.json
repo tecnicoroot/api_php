@@ -3,7 +3,11 @@
     "autoload": {
         "psr-4": {
             "Tecnicoroot\\ApiPhp\\": "src/"
-        }
+        },
+        "files": [
+            "src/Utils/Utils.php",
+            "src/routes/v1/routesv1.php"
+        ]
     },
     "authors": [
         {
@@ -12,4 +16,5 @@
         }
     ],
     "require": {}
+    
 }
