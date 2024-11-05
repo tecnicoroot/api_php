@@ -45,40 +45,32 @@ Criar o arquivo para que seja possível a utilização de url amigável
 
 ## 4. Ordem de criação dos arquivo segundo o canal [NevesCode](https://www.youtube.com/watch?v=5fg5NG2ucsA)
 
->Http
-    >>Route.php
-
->routes
-    >>main.php
+>Controllers
+    >>HomeController.php
+    >>NotFoundController.php
+    >>UserController.php
 
 >Core
     >>Core.php
 
->Controllers
-    >>HomeController.php
-
 >Http
+    >>JWT.php
     >>Request.php
     >>Response.php
+    >>Route.php
 
->Controllers
-    >>NotFoundController.php
+>Models
+    >>Database.php
+    >>User.php
 
->Controllers
-    >>UserController.php
+>routes
+    >>main.php
 
 >Services
     >>UserServices.php
 
 >Ultis
     >>Validator
-
->Models
-    >>Database.php
-    >>User.php
-
->Http
-    >>JWT.php
 
 ## 4. iniciando o meu desenvolvimento
 
@@ -90,5 +82,12 @@ Criar o arquivo para que seja possível a utilização de url amigável
 5. Criado o arquivo Core.php 
 6. Criado o arquivo Request.php
 7. Criado o arquivo Responnse.php
-8. Criado o arquivo RNotFoundController.php
+8. Criado o arquivo NotFoundController.php
 9. Criado o arquivo .http
+
+## 5. Implementar as middleware
+
+>Core
+    >>Middlewares
+        >>>Queue - gerencia as filas
+        >>>Maintenance.php 
