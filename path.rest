@@ -1,0 +1,42 @@
+### Url para teste após a criação do projeto.
+GET http://localhost/public
+
+###
+GET http://localhost/public/api/
+
+### Url para criação do registro de um novo usuário.
+POST http://localhost/public/api/register
+content-type: application/json
+accept: application/json,text/*;q=0.99
+
+{
+    "name": "Admin",
+    "email": "tecnicoroot@gmail.com",
+    "password": "1qaz2wsx"
+}
+
+### Url para efetuar o login e senha
+POST http://localhost/public/api/login
+content-type: application/json
+accept: application/json,text/*;q=0.99
+
+{
+    "email": "tecnicoroot@gmail.com",
+    "password": "1qaz2wsx"
+}
+
+### Url para efetuar o login.
+POST http://localhost/public/api/login
+content-type: application/json
+accept: application/json,text/*;q=0.99
+
+{
+    "grant_type" : "credential",
+    "client_id": "client_id_ffc92a1b-8292-4288-b8a6-66359451680b", 
+    "client_secret" : "client_secret_b889bb67-b34e-4e14-8219-f75be41b850c"
+}
+### Url para testar a área protegida. Com o envio do token
+GET  http://localhost/public/api/me
+content-type: application/json
+accept: application/json,text/*;q=0.99
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L3B1YmxpYy9hcGkvbG9naW4iLCJpYXQiOjE3MzA4NDU3MDUsImV4cCI6MTczMDg0OTMwNSwibmJmIjoxNzMwODQ1NzA1LCJqdGkiOiIwbE9TRUE4OW1ZYW1qRUpFIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.OR5tOxVzAKxEwOPc_Kftk5lNsLNEr2DnESqrhdIybeU
