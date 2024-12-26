@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Observers\UserObserver;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -13,7 +14,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable, Authorizable, HasFactory;
+    use Authenticatable, Authorizable, HasFactory, UserObserver;
 
     /**
      * The attributes that are mass assignable.
@@ -46,14 +47,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
     public function getJWTCustomClaims() {
-
+        // Pega as abilities e adiciona NO jwt
+        $abilities = $this->roles->map->abilities->flatten()->pluck('name');
+        
+        
         return [
 
             'name' => $this->name,
-            'Rules' => [
-                'Administrador do Sistema'
-            ]
-
+            'Rules' => $abilities
         ];
 
      }
