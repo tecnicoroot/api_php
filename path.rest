@@ -1,34 +1,41 @@
+@hostname = http://localhost/public/api
+@port = 80
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+@token = 
+
 ### Url para teste após a criação do projeto.
 GET http://localhost/public
 
 ###
-GET http://localhost/public/api/
+GET {{host}}
 
 ### Url para criação do registro de um novo usuário.
-POST http://localhost/public/api/register
-content-type: application/json
-accept: application/json,text/*;q=0.99
+POST {{host}}/admin/register
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
 
 {
     "name": "Admin",
-    "email": "tecnicoroot1003@gmail.com",
+    "email": "tecnicoroot@gmail.com",
     "password": "1qaz2wsx"
 }
 
 ### Url para efetuar o login e senha
-POST http://localhost/public/api/login
-content-type: application/json
-accept: application/json,text/*;q=0.99
+POST {{host}}/login
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
 
 {
-    "email": "tecnicoroot2222@gmail.com",
+    "email": "tecnicoroot@gmail.com",
     "password": "1qaz2wsx"
 }
 
 ### Url para efetuar o login.
-POST http://localhost/public/api/login
-content-type: application/json
-accept: application/json,text/*;q=0.99
+POST {{host}}/login
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
 
 {
     "grant_type" : "credential",
@@ -36,10 +43,10 @@ accept: application/json,text/*;q=0.99
     "client_secret" : "client_secret_c2c77594-ebbe-4e1d-941f-b6e81108b46b"
 }
 ### Url para testar a área protegida. Com o envio do token
-GET  http://localhost/public/api/me
-content-type: application/json
-accept: application/json,text/*;q=0.99
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L3B1YmxpYy9hcGkvbG9naW4iLCJpYXQiOjE3MzA4NDU3MDUsImV4cCI6MTczMDg0OTMwNSwibmJmIjoxNzMwODQ1NzA1LCJqdGkiOiIwbE9TRUE4OW1ZYW1qRUpFIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.OR5tOxVzAKxEwOPc_Kftk5lNsLNEr2DnESqrhdIybeU
+GET  {{host}}/admin/me
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
+Authorization: Bearer {{token}}
 
 ### E-mail
 

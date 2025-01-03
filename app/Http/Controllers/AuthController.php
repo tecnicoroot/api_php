@@ -133,9 +133,8 @@ class AuthController extends Controller
         }
     }
 
-    public function me(){
+    public function me(Request $request){
         $user = auth()->user();
-
         return $this->successResponse($user);
     }
 

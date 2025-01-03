@@ -14,8 +14,9 @@ class AbilityTableSeeder extends Seeder
     public function run(): void
     {
         $abilities = [
-            'create_role','edit_role','read_role','delete_role',
-            'create_ability','edit_ability','read_ability','delete_ability'
+            'create-user','edit-user','read-user','delete-user',
+            'create-role','edit-role','read-role','delete-role',
+            'create-ability','edit-ability','read-ability','delete-ability'
         ];
         foreach ($abilities as $ability) {
 

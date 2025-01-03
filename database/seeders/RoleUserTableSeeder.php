@@ -2,14 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Ability;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AbilityRoleTableSeeder extends Seeder
+class RoleUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,17 +16,18 @@ class AbilityRoleTableSeeder extends Seeder
     {
     
         $roles = Role::all()->where('name', '=', 'Administrador');
-        $abilities = Ability::all();
-       
-        foreach ($abilities as $ability) {
+        $users = User::all();
 
-            DB::table('ability_role')->insert([
-                'role_id' => $roles[0]['id'],
-                'ability_id' => $ability->id,
+        //dd($roles[0]->id, $users[0]->id);
+       
+        foreach ($users as $user) {
+
+            DB::table('role_user')->insert([
+                'role_id' => $roles[0]->id,
+                'user_id' => $users[0]->id,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ]);
         }     
     }
 }
-

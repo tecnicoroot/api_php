@@ -22,13 +22,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         return microtime();
     });
 
-    $router->post('/register', 'AuthController@register');
+    
     $router->post('/login', 'AuthController@login');
     //Metodo que só pode ser acessado com o usuário autenticado
-    $router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->group(['prefix' => 'admin','middleware' => ['auth', 'roles:Admin']], function () use ($router) {
         $router->get('/me', 'AuthController@me');
+        $router->post('/register', 'AuthController@register');
 
     });
+    
 });
-
-$router->get('/send', 'EmailController@send');
+//Rota de texte; 
+//$router->get('/send', 'EmailController@send');
