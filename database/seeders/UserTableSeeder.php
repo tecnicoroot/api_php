@@ -19,8 +19,8 @@ class UserTableSeeder extends Seeder
             'name' => 'David Luis da Silva',
             'email' => 'tecnicoroot@gmail.com',
             'password' => Hash::make('1qaz2wsx'),
-            'client_id' => $this->generateApiKey(),
-            'client_secret' => $this->generateApiKey(),
+            //'client_id' => $this->generateApiKey(),
+            //'client_secret' => $this->generateApiKey(),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);

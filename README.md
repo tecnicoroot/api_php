@@ -994,3 +994,18 @@ php artisan make:model Ability
 '''
 
 ### Criação dos Seeders.
+
+### Refatoração
+
+Criação das Controllers
+
+Criação dos Services
+
+Criação dos Repository
+
+Criar Validação
+
+Traduzir mensagens.
+Acessar o repositório https://github.com/Laravel-Lang/lang
+locales/pt_BR
+abir php.json

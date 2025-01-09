@@ -1,0 +1,60 @@
+@hostname = http://localhost/public/api/v1/admin/user
+@port = 80
+@host = {{hostname}}
+@contentType = application/json
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L3B1YmxpYy9hcGkvdjEvbG9naW4iLCJpYXQiOjE3MzYzODgzNTksImV4cCI6MTczNjM5MTk1OSwibmJmIjoxNzM2Mzg4MzU5LCJqdGkiOiJpNzZuZ2VaMDZ0UVNubXEyIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJpZCI6MSwibmFtZSI6IkRhdmlkIEx1aXMgZGEgU2lsdmEiLCJhYmlsaXRpZXMiOlsiY3JlYXRlLXVzZXIiLCJlZGl0LXVzZXIiLCJyZWFkLXVzZXIiLCJkZWxldGUtdXNlciIsImNyZWF0ZS1yb2xlIiwiZWRpdC1yb2xlIiwicmVhZC1yb2xlIiwiZGVsZXRlLXJvbGUiLCJjcmVhdGUtYWJpbGl0eSIsImVkaXQtYWJpbGl0eSIsInJlYWQtYWJpbGl0eSIsImRlbGV0ZS1hYmlsaXR5Il19.Cr4Ju5K8pIqDWnzr7hcBQ_MuKtExmjsXceQ8ApgLSsU
+
+### Url para criação do registro de um novo usuário.
+POST {{host}}/register
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
+Authorization: Bearer {{token}}
+
+{
+    "name": "Admin2",
+    "email": "tecnicoroot51@gmail.com",
+    "password": "1qaz2wsx",
+    "password_confirmation": "1qaz2wsx"
+}
+
+### Edita os dados do usuário
+PUT {{host}}/register/8 HTTP/1.1
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
+Authorization: Bearer {{token}}
+
+{
+    "name": "teste3",
+	"email": "teste@teste.com"
+}
+
+### Exibe os dados do usuário
+GET {{host}}/4
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
+Authorization: Bearer {{token}}
+
+### Exclui o usuário
+DELETE {{host}}/destroy/5 HTTP/1.1
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
+Authorization: Bearer {{token}}
+
+### Edita a senha
+PUT {{host}}/register/password/7 HTTP/1.1
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
+Authorization: Bearer {{token}}
+
+{
+    "password": "teste",
+	"password_confirmation": "teste"
+}
+
+### Edita a senha
+GET {{host}}/register/generate/7 HTTP/1.1
+content-type: {{contentType}}
+accept: {{contentType}},text/*;q=0.99
+Authorization: Bearer {{token}}
+
+

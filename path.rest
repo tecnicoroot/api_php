@@ -1,26 +1,8 @@
-@hostname = http://localhost/public/api
+@hostname = http://localhost/public/api/v1
 @port = 80
-@host = {{hostname}}:{{port}}
+@host = {{hostname}}
 @contentType = application/json
-
-@token = 
-
-### Url para teste após a criação do projeto.
-GET http://localhost/public
-
-###
-GET {{host}}
-
-### Url para criação do registro de um novo usuário.
-POST {{host}}/admin/register
-content-type: {{contentType}}
-accept: {{contentType}},text/*;q=0.99
-
-{
-    "name": "Admin",
-    "email": "tecnicoroot@gmail.com",
-    "password": "1qaz2wsx"
-}
+@token = ""
 
 ### Url para efetuar o login e senha
 POST {{host}}/login
@@ -39,8 +21,8 @@ accept: {{contentType}},text/*;q=0.99
 
 {
     "grant_type" : "credential",
-    "client_id": "client_id_2ddc0f5f-adc0-4a99-a8dc-8a69cd5578c5", 
-    "client_secret" : "client_secret_c2c77594-ebbe-4e1d-941f-b6e81108b46b"
+    "client_id": "client_id_090ea978-706d-4f3b-8037-deca2e20599d",
+    "client_secret": "client_secret_516d3e9b-3879-4f91-9a78-508b46394eba"
 }
 ### Url para testar a área protegida. Com o envio do token
 GET  {{host}}/admin/me
@@ -50,4 +32,4 @@ Authorization: Bearer {{token}}
 
 ### E-mail
 
-GET  http://localhost/public/send
+GET http://localhost/public/send

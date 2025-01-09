@@ -13,24 +13,38 @@
 |
 */
 
-$router->get('/', function () {
+$router->group(['prefix' => 'api/v1'], function () use ($router) {
     
-});
-
-$router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/', function () {
         return microtime();
     });
 
+    $router->post('/login', 'Auth\AuthController@login');
+
+    $router->group(['middleware' => ['auth']], function () use ($router){
+        $router->post('/logout', 'Auth\AuthController@logout');
+        $router->post('/refresh', 'Auth\AuthController@refresh');
+    });
     
-    $router->post('/login', 'AuthController@login');
-    //Metodo que só pode ser acessado com o usuário autenticado
-    $router->group(['prefix' => 'admin','middleware' => ['auth', 'roles:Admin']], function () use ($router) {
+    //Metodos que só podem ser acessados com o usuário autenticado
+    $router->group(['prefix' => 'admin','middleware' => ['auth', 'roles:Administrador']], function () use ($router) {
+        
         $router->get('/me', 'AuthController@me');
-        $router->post('/register', 'AuthController@register');
+        #$router->post('/register', 'AuthController@register');
+
+        //Rotas User
+        $router->group(['prefix'=> 'user'], function () use ($router) {
+            $router->post('/register', 'User\UserController@create');
+            $router->put('/register/{id}', 'User\UserController@update');
+            $router->put('/register/password/{id}', 'User\UserController@updatePassword'); 
+            $router->get('/{id}', "User\UserController@findOneBy");
+            $router->delete('/destroy/{id}', "User\UserController@delete");
+        });
+
 
     });
     
+   
+
 });
-//Rota de texte; 
-//$router->get('/send', 'EmailController@send');
+

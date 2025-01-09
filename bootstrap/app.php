@@ -7,7 +7,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 ))->bootstrap();
 
 date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
-
+//config(['app.locale' => 'pt_BR']);
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -26,6 +26,7 @@ $app = new Laravel\Lumen\Application(
 $app->withFacades();
 
 $app->withEloquent();
+
 
 /*
 |--------------------------------------------------------------------------

@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email','client_id', 'client_secret'
+        'name', 'email','client_id', 'client_secret','password'
     ];
 
     /**
@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password'
     ];
 
     // Liga o usuários as suas rules
@@ -55,11 +55,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         // Pega as abilities e adiciona NO jwt
         $abilities = $this->roles->map->abilities->flatten()->pluck('name');
         
-        
+        //dd($abilities);
         return [
 
+            'id' => $this->id,
             'name' => $this->name,
-            'Rules' => $abilities
+            'abilities' => $abilities
         ];
 
      }
@@ -68,11 +69,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
          $pass = Hash::make(($val));
          $this->attributes['password'] = $pass;
      }
-     public function setClientIdAttribute($val){
+    
+    public function setClientIdAttribute($val){
         $this->attributes['client_id'] = 'client_id_'.$val;
     }
 
     public function setClientSecretAttribute($val){
         $this->attributes['client_secret'] = 'client_secret_'.$val;
     }
+
+
 }

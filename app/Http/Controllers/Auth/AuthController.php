@@ -1,52 +1,19 @@
 <?php
+declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use App\Traits\ApiResponser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use App\Models\User;
-class AuthController extends Controller
+use Laravel\Lumen\Routing\Controller as BaseController;
+
+class AuthController extends BaseController
 {
-    /**
-     * @param Request $request
-     * @return array
-     * @throws ValidationException
-     */
-    public function isRegisterValid(Request $request)
-    {
-        return  $this->validate(
-            $request,
-            [
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|min:5'
-            ]
-        );
-    }
 
-    /**
-     * @param Request $request
-     * @return App\Traits\Iluminate\Http\Response|App\Traits\Iluminate\Http\JsonResponse|void
-     * @throws ValidationException
-     */
-    public function register(Request $request)
-    {
-        if ($this->isRegisterValid($request)) {
-            try {
-                $user = new User();
-                $user->password = $request->password;
-                $user->email = $request->email;
-                $user->name = $request->name;
-                $user->client_id = $this->generateApiKey();
-                $user->client_secret = $this->generateApiKey();
-                $user->save();
-                return $this->successResponse($user);
-            } catch (\Exception $e) {
-                return $this->errorResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
-            }
-        }
-    }
-
+    use ApiResponser;
     /**
      * @param Request $request
      * @return array
@@ -133,23 +100,31 @@ class AuthController extends Controller
         }
     }
 
-    public function me(Request $request){
-        $user = auth()->user();
-        return $this->successResponse($user);
-    }
-
-    public function generateApiKey()
+    public function logout()
     {
-        $data = random_bytes(16);
-        if (false === $data) {
-            return false;
-        }
-        $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
-        $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
-        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+        auth()->logout();
+        return $this->successResponse([
+            'logout' => 'success'
+        ], 200);
     }
+
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
+
+    protected function respondWithToken($token)
+    {
+        return $this->successResponse([
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::factory()->getTTL()
+        ], 200);
+    }
+
 }
-
-
-
-  
