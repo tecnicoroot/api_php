@@ -33,3 +33,6 @@ Authorization: Bearer {{token}}
 ### E-mail
 
 GET http://localhost/public/send
+###
+
+GET http://localhost/
